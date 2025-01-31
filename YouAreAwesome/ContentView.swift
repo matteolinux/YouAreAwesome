@@ -37,15 +37,8 @@ struct ContentView: View {
                 let messageImage2 = "hand.thumbsup"
                 
                 
-                if message == message1 {
-                    messageImage = messageImage2
-                    message = message2
-                    
-                }else{
-                    messageImage = messageImage1
-                    message = message1
-                    
-                }
+                message = message == message1 ? message2 : message1
+                messageImage = messageImage == messageImage1 ? messageImage2 : messageImage1
                 
             }
             .buttonStyle(.borderedProminent)
