@@ -9,41 +9,42 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var messageImage = ""
-    @State private var message = ""
+    @State private var image = ""
+    @State private var imageNumber = 0
+    
+    
     
     
     var body: some View {
         VStack {
             Spacer()
             
-            Image(systemName: messageImage)
+            Image(image)
                 .resizable()
                 .scaledToFit()
-                .foregroundStyle(.orange)
+                .clipShape(RoundedRectangle(cornerRadius: 50))
+                .shadow(radius: 10)
             
-            Text(message)
-                .font(.largeTitle)
-                .fontWeight(.ultraLight)
             
             Spacer()
             
             
             Button("Press Me!") {
                 
-                let message1 = "You are awesome!"
-                let message2 = "You are great!"
-                let messageImage1 = "sun.max"
-                let messageImage2 = "hand.thumbsup"
-                
-                
-                message = message == message1 ? message2 : message1
-                messageImage = messageImage == messageImage1 ? messageImage2 : messageImage1
+                if imageNumber > 9 {
+                    imageNumber = 0
+                    image = "image\(imageNumber)"
+                    imageNumber += 1
+                    
+                }else{
+                    image = "image\(imageNumber)"
+                    imageNumber += 1
+                }
                 
             }
             .buttonStyle(.borderedProminent)
             .font(.title2)
-            .tint(.orange)
+            
             
             
             
