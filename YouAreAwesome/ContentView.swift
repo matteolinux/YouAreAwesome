@@ -19,19 +19,26 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Spacer()
             
-            Image(image)
-                .resizable()
-                .scaledToFit()
-                .clipShape(RoundedRectangle(cornerRadius: 50))
-                .shadow(radius: 10)
             
             Text(text)
                 .fontWeight(.heavy)
                 .foregroundStyle(Color.red)
                 .font(.largeTitle)
                 .multilineTextAlignment(.center)
+                .minimumScaleFactor(0.50)
+                .frame(height: 100)
+              
+                
+            
+            Image(image)
+                .resizable()
+                .scaledToFit()
+                .clipShape(RoundedRectangle(cornerRadius: 50))
+                .shadow(radius: 10)
+                .animation(.bouncy(duration: 0.2, extraBounce: 0.2), value: image)
+            
+            
             
             
             Spacer()
@@ -39,18 +46,8 @@ struct ContentView: View {
             
             Button("Press Me!") {
                 
-                if imageNumber > 9 {
-                    imageNumber = 0
-                    image = "image\(imageNumber)"
-                    text = names[imageNumber]
-                    imageNumber += 1
-                    
-                    
-                }else{
-                    image = "image\(imageNumber)"
-                    text = names[imageNumber]
-                    imageNumber += 1
-                }
+                text = names.randomElement()!
+                image = "image\(Int.random(in: 0...9))"
                 
             }
             .buttonStyle(.borderedProminent)
